@@ -1,0 +1,17 @@
+# Goldman Sachs Contact Center AI - Dependencies
+# ===============================================
+
+# Web Framework
+Flask==2.3.3
+
+# Development Dependencies (optional)
+# Uncomment these for development/testing
+pytest==7.4.2
+pytest-cov==4.1.0
+# flake8==6.0.0
+# black==23.7.0
+
+# Production Dependencies
+# Uncomment these for production deployment
+# gunicorn==21.2.0
+# python-dotenv==1.0.0
