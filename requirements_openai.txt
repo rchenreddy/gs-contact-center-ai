@@ -1,0 +1,8 @@
+# OpenAI Chatbot Dependencies
+# ===========================
+
+# OpenAI API client (latest version with new API)
+openai>=2.0.0
+
+# Note: This uses the new OpenAI API structure (v2.x)
+# If you need the old API structure, use: openai==0.28.1
