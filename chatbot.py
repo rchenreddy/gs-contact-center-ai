@@ -1,8 +1,7 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app)
+# chatbot.py
+# Simple Chatbot Simulation for Goldman Sachs Training
+# ----------------------------------------------------
+# This simulates a contact center bot responding to customer queries.
 
 def chatbot_response(user_input):
     responses = {
@@ -14,12 +13,19 @@ def chatbot_response(user_input):
     }
     return responses.get(user_input.lower(), "I'm sorry, I didn’t understand that. Could you rephrase?")
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    data = request.get_json()
-    user_input = data.get("message", "")
-    response = chatbot_response(user_input)
-    return jsonify({"user": user_input, "bot": response})
+def main():
+    print("🤖 Goldman Sachs Contact Center AI - Chatbot Simulation")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "bye":
+            print("Bot:", chatbot_response(user_input))
+            break
+        print("Bot:", chatbot_response(user_input))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    main()
+
+
+
+
+
