@@ -1,26 +1,43 @@
-# chatbot.py
-# Simple Chatbot Simulation for Goldman Sachs Training
-# ----------------------------------------------------
-# This simulates a contact center bot responding to customer queries.
+"""
+Standalone Chatbot Simulation for Goldman Sachs Training
+=======================================================
 
-def chatbot_response(user_input):
-    responses = {
-        "hello": "Hi there! Welcome to Goldman Sachs support. How can I help you?",
-        "account": "I can help you with account-related queries. Could you specify if it's balance or login issues?",
-        "loan": "We offer personal, home, and business loans. Would you like interest rate details?",
-        "credit card": "Sure! We have multiple credit card options. Do you want to hear about rewards or fees?",
-        "bye": "Goodbye! Thanks for connecting with Goldman Sachs."
-    }
-    return responses.get(user_input.lower(), "I'm sorry, I didn’t understand that. Could you rephrase?")
+This simulates a contact center bot responding to customer queries.
+Uses the chatbot_core module for consistent behavior.
+"""
+
+from chatbot_core import chatbot
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def main():
+    """Main function to run the interactive chatbot simulation."""
     print("🤖 Goldman Sachs Contact Center AI - Chatbot Simulation")
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == "bye":
-            print("Bot:", chatbot_response(user_input))
-            break
-        print("Bot:", chatbot_response(user_input))
+    print("Type 'bye' to exit the conversation.")
+    print("-" * 50)
+    
+    try:
+        while True:
+            user_input = input("You: ")
+            
+            # Check for exit condition
+            if user_input.lower() == "bye":
+                response = chatbot.get_response(user_input)
+                print("Bot:", response)
+                break
+            
+            # Get and display response
+            response = chatbot.get_response(user_input)
+            print("Bot:", response)
+            
+    except KeyboardInterrupt:
+        print("\n\nGoodbye! Thanks for using Goldman Sachs Contact Center AI.")
+    except Exception as e:
+        logger.error(f"Error in main chatbot loop: {str(e)}")
+        print("Sorry, I encountered an error. Please try again.")
 
 if __name__ == "__main__":
     main()
